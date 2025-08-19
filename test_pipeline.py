@@ -1,23 +1,20 @@
 #!/usr/bin/env python3
-"""
-Test script for the Claim Resubmission Pipeline
-Tests functionality and shows how the pipeline works.
-"""
+
 
 from claim_pipeline import ClaimResubmissionPipeline
 import json
 
 def test_pipeline_functionality():
-    """Test the main pipeline features."""
     
-    print("🧪 Testing Claim Resubmission Pipeline")
+    
+    print(" Testing Claim Resubmission Pipeline")
     print("=" * 50)
     
     # Create pipeline instance
     pipeline = ClaimResubmissionPipeline()
     
     # Test data loading
-    print("\n📁 Testing Data Loading:")
+    print("\n Testing Data Loading:")
     alpha_claims = pipeline.load_csv_data("data/emr_alpha.csv")
     beta_claims = pipeline.load_json_data("data/emr_beta.json")
     
@@ -33,7 +30,7 @@ def test_pipeline_functionality():
     print(f"  ✅ Beta claims normalized: {len([c for c in normalized_beta if c])}")
     
     # Test business logic
-    print("\n🎯 Testing Business Logic:")
+    print("\n Testing Business Logic:")
     
     # Test case 1: Valid resubmission candidate
     test_claim = {
@@ -86,7 +83,7 @@ def test_pipeline_functionality():
 def demonstrate_pipeline_execution():
     """Show the full pipeline in action."""
     
-    print("\n🚀 Demonstrating Full Pipeline Execution:")
+    print("\n Demonstrating Full Pipeline Execution:")
     print("=" * 50)
     
     # Run the pipeline
@@ -123,9 +120,9 @@ if __name__ == "__main__":
         test_pipeline_functionality()
         demonstrate_pipeline_execution()
         
-        print(f"\n🎯 Pipeline demonstration completed!")
-        print(f"📁 Check 'resubmission_candidates.json' for detailed results")
-        print(f"📝 Check 'pipeline.log' for execution logs")
+        print(f"\n Pipeline demonstration completed!")
+        print(f" Check 'resubmission_candidates.json' for detailed results")
+        print(f" Check 'pipeline.log' for execution logs")
         
     except Exception as e:
         print(f"❌ Test failed: {str(e)}")
