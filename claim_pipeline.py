@@ -1,11 +1,4 @@
 #!/usr/bin/env python3
-"""
-Claim Resubmission Pipeline
-
-Processes healthcare claims from different EMR systems and identifies
-ones that can be resubmitted. Handles CSV and JSON inputs.
-"""
-
 import json
 import csv
 import logging
@@ -96,7 +89,7 @@ class ClaimResubmissionPipeline:
             return []
     
     def normalize_alpha_claim(self, claim: Dict[str, Any]) -> Dict[str, Any]:
-        """Convert Alpha claim to standard format."""
+      
         try:
             # Handle empty patient_id
             patient_id = claim.get('patient_id')
@@ -129,7 +122,7 @@ class ClaimResubmissionPipeline:
             return None
     
     def normalize_beta_claim(self, claim: Dict[str, Any]) -> Dict[str, Any]:
-        """Convert Beta claim to standard format."""
+        
         try:
             # Map fields from Beta format to standard
             return {
@@ -147,7 +140,7 @@ class ClaimResubmissionPipeline:
             return None
     
     def classify_denial_reason(self, denial_reason: Optional[str]) -> str:
-        """Figure out if denial reason is retryable."""
+       
         if denial_reason is None:
             return 'ambiguous'
         
@@ -171,7 +164,7 @@ class ClaimResubmissionPipeline:
         return 'ambiguous'
     
     def is_eligible_for_resubmission(self, claim: Dict[str, Any]) -> tuple[bool, str]:
-        """Check if claim meets resubmission criteria."""
+      
         try:
             # Must be denied
             if claim.get('status') != 'denied':
@@ -214,7 +207,7 @@ class ClaimResubmissionPipeline:
             return False, f"Error processing claim: {str(e)}"
     
     def generate_resubmission_recommendation(self, claim: Dict[str, Any]) -> Dict[str, Any]:
-        """Create recommendation for resubmission."""
+       
         denial_reason = claim.get('denial_reason', 'Unknown')
         
         # Map reasons to actions
@@ -344,11 +337,11 @@ def main():
         pipeline.save_results(resubmission_candidates)
         
         # Print summary
-        print(f"\n🎯 Pipeline completed!")
-        print(f"📊 Total claims: {pipeline.metrics['total_claims_processed']}")
-        print(f"✅ Eligible for resubmission: {len(resubmission_candidates)}")
-        print(f"📁 Results: resubmission_candidates.json")
-        print(f"📝 Logs: pipeline.log")
+        print(f"\n Pipeline completed!")
+        print(f" Total claims: {pipeline.metrics['total_claims_processed']}")
+        print(f" Eligible for resubmission: {len(resubmission_candidates)}")
+        print(f" Results: resubmission_candidates.json")
+        print(f" Logs: pipeline.log")
         
         if resubmission_candidates:
             print(f"\n🔍 Top candidates:")
