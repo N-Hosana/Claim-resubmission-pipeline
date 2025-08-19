@@ -1,0 +1,9 @@
+# Core dependencies for the Claim Resubmission Pipeline
+# All packages used are part of Python standard library, so no external packages needed
+
+# For production use, you might want to add:
+# fastapi>=0.104.0
+# uvicorn>=0.24.0
+# pandas>=2.0.0
+# pydantic>=2.0.0
+# python-dateutil>=2.8.0
